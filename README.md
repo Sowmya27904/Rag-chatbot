@@ -6,7 +6,7 @@ An AI-powered chatbot that answers questions from your uploaded documents using 
 ---
 
 ## Live Demo
-🔗 [https://your-app-name.onrender.com]https://rag-chatbot-8q6e.onrender.com
+🔗https://rag-chatbot-8q6e.onrender.com
 
 
 ---

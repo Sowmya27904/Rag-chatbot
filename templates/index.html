@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DocChat — AI Document Q&A</title>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <div>
+          <div class="logo-title">DocChat</div>
+          <div class="logo-sub">AI Document Q&A · RAG</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-label">Upload Document</div>
+
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept=".pdf,.txt,.md,.docx" hidden/>
+        <div class="upload-icon">📄</div>
+        <div class="upload-primary">Drop file or click to upload</div>
+        <div class="upload-secondary">PDF · TXT · Markdown · DOCX — max 20 MB</div>
+      </div>
+
+      <div class="upload-progress" id="uploadProgress" style="display:none">
+        <div class="progress-label" id="progressLabel">Processing...</div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="upload-error" id="uploadError" style="display:none"></div>
+    </div>
+
+    <div class="sidebar-section flex-grow">
+      <div class="section-label">Loaded Documents (<span id="docCount">0</span>)</div>
+      <div class="doc-list" id="docList">
+        <div class="doc-empty">No documents yet.<br/>Upload one above to start.</div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer" id="sidebarFooter" style="display:none">
+      <button class="btn-clear" id="clearBtn">🗑 Clear all documents</button>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CHAT -->
+  <main class="chat-main">
+
+    <header class="chat-header">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <div class="header-info">
+        <div class="header-title">Document Q&A Chat</div>
+        <div class="header-sub" id="headerSub">No documents loaded — upload one to start</div>
+      </div>
+      <div class="rag-badge" id="ragBadge" style="display:none">● RAG active</div>
+      <!-- Filter badge shown when user focuses on one file -->
+      <div id="filterBadge"></div>
+    </header>
+
+    <div class="messages" id="messages">
+      <div class="message ai">
+        <div class="avatar">⚡</div>
+        <div class="bubble-wrap">
+          <div class="bubble">
+            <strong>Welcome to DocChat!</strong><br/><br/>
+            I'm an AI assistant powered by <strong>RAG (Retrieval-Augmented Generation)</strong>.
+            Upload a document on the left and ask me anything about it.<br/><br/>
+            <strong>Supported formats:</strong> PDF, TXT, Markdown, DOCX
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suggestions" id="suggestions">
+      <button class="chip" onclick="setInput('What is this document about?')">What is this document about?</button>
+      <button class="chip" onclick="setInput('Summarize the key points')">Summarize the key points</button>
+      <button class="chip" onclick="setInput('What are the main conclusions?')">What are the main conclusions?</button>
+      <button class="chip" onclick="setInput('List the important sections')">List the important sections</button>
+    </div>
+
+    <div class="input-area">
+      <div class="input-box">
+        <textarea id="messageInput" placeholder="Ask anything about your documents..." rows="1"></textarea>
+        <button class="send-btn" id="sendBtn">↑</button>
+      </div>
+      <div class="input-hint">Enter to send &nbsp;·&nbsp; Shift+Enter for new line</div>
+    </div>
+
+  </main>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
